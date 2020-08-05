@@ -1,4 +1,5 @@
 import knex from 'knex';
+import Knex from 'knex';
 
 export async function up(knex: knex) {
     return knex.schema.createTable('connections', table => {
@@ -12,8 +13,8 @@ export async function up(knex: knex) {
             .onDelete('CASCADE');
 
         table.timestamp('created_at')
-            .defaultTo('now()')
-            .notNullable();
+            .defaultTo(Knex.raw('CURRENT_TIMESTAMP'))
+            .notNullable(); 
     });
 }
 
